@@ -6,19 +6,30 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
+    void Start()
+    {
+        transform.position = new Vector3(
+            player.position.x + offset.x,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+
     void LateUpdate()
     {
-        Vector3 desiredPosition = player.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(
-            transform.position,
-            desiredPosition,
+        float targetX = player.position.x + offset.x;
+
+        float smoothedX = Mathf.Lerp(
+            transform.position.x,
+            targetX,
             smoothSpeed
         );
 
+        // Only follow X, keep Y and Z fixed
         transform.position = new Vector3(
-            smoothedPosition.x,
-            smoothedPosition.y,
-            transform.position.z  // keep camera Z fixed
+            smoothedX,
+            transform.position.y,
+            transform.position.z
         );
     }
 }
