@@ -170,6 +170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  maxDashCharges: 3
+  dashCooldown: 5
+  timer: 0
+  isDashing: 0
   groundCheck: {fileID: 359056550}
   groundCheckRadius: 0.1
   groundLayer:
