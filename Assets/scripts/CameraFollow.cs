@@ -5,6 +5,8 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
+    public float minX = -120.2f;
+    public float maxX = 120.2f;
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         float targetX = player.position.x + offset.x;
+        targetX = Mathf.Clamp(targetX, minX, maxX);
 
         float smoothedX = Mathf.Lerp(
             transform.position.x,
@@ -25,7 +28,7 @@ public class CameraFollow : MonoBehaviour
             smoothSpeed
         );
 
-        // Only follow X, keep Y and Z fixed
+
         transform.position = new Vector3(
             smoothedX,
             transform.position.y,
