@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Vector2 movement;
     private bool Grounded;
-    private int currDashCharges = 3;
+    public int currDashCharges = 3;
     public int maxDashCharges = 3; 
     public float dashCooldown = 5f;
     public float timer = 0f;

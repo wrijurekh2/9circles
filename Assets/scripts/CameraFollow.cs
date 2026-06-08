@@ -5,7 +5,7 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
-    public float minX = -120.2f;
+    public float minX = -94f;
     public float maxX = 120.2f;
 
     void Start()
