@@ -11,8 +11,6 @@ public class DashUI : MonoBehaviour
     private List<Image> fillBars = new List<Image>();
     void Start()
     {
-        Debug.Log("Fill bars count: " + fillBars.Count);
-        Debug.Log("Max dash charges: " + playerMovement.maxDashCharges);
         for (int i = 0; i < playerMovement.maxDashCharges; i++)
         {
             GameObject bar = Instantiate(dashBarPrefab, transform);
