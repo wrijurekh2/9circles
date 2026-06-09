@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 303579233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -260.82, y: -7.03, z: 1}
+  m_LocalPosition: {x: -88.1, y: -3.8, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -172,7 +172,7 @@ MonoBehaviour:
   jumpForce: 10
   currDashCharges: 3
   maxDashCharges: 3
-  dashCooldown: 2
+  dashCooldown: 5
   timer: 0
   isDashing: 0
   groundCheck: {fileID: 359056550}
@@ -433,12 +433,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: dc67c411cea39cf469cad8ca27374303, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1473b3f802db29147995cf098f3fc60b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 400, y: 11.25}
+  m_Size: {x: 40, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -452,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 367594786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.3, y: -3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -783,7 +783,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -808,7 +808,7 @@ Transform:
   m_GameObject: {fileID: 565817141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -252.62, y: -3.01, z: -10}
+  m_LocalPosition: {x: -91.1, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -829,7 +829,7 @@ MonoBehaviour:
   player: {fileID: 303579234}
   smoothSpeed: 0.125
   offset: {x: 3, y: 0, z: -10}
-  minX: -252.62
+  minX: -91.1
   maxX: 120.2
 --- !u!1 &832575517
 GameObject:
@@ -1012,8 +1012,8 @@ Transform:
   m_GameObject: {fileID: 857313338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63, y: -9.69, z: 1}
-  m_LocalScale: {x: 400, y: -3.2312038, z: 1}
+  m_LocalPosition: {x: 0.3, y: -6.6507, z: 1}
+  m_LocalScale: {x: 201.04262, y: -3.2312038, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6119,7 +6119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 102, y: 379}
+  m_AnchoredPosition: {x: 160, y: 10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545718529
@@ -6136,7 +6136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashUI
   dashBarPrefab: {fileID: 2502363216126739070, guid: ed85d5c98eda2da45b7f7e43867d95ff, type: 3}
   playerMovement: {fileID: 303579235}
-  visualCharges: 0
 --- !u!1 &1661637530
 GameObject:
   m_ObjectHideFlags: 0

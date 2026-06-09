@@ -55,11 +55,9 @@ public class PlayerMovement : MonoBehaviour
         // keep track of timer
         if (currDashCharges < maxDashCharges)
         {
-            UnityEngine.Debug.Log("number of dash charges:" + currDashCharges);
             timer += Time.deltaTime;
             if (timer >= dashCooldown)
             {
-
                 currDashCharges += 1;
                 timer = 0f;
             }
@@ -75,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
                 && currDashCharges > 0)
         {   
             StartCoroutine(Dash());
-            
         }
 
         if(playerInput.Player.Attack.WasPressedThisFrame())
