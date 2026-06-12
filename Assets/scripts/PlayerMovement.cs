@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -97,15 +98,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (movement.x != 0)
         {
-            //animator.SetBool("IsMoving", true);
-            //animator.SetInteger("AnimState", 1);
+            animator.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = movement.x > 0;
         }
-        /*else
+        else
         {
-            animator.SetBool("IsMoving", false);
-            animator.SetInteger("AnimState", 0);
-        }*/
+            animator.SetBool("IsRunning", false);
+        }
+        
 
         //animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
         //animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
