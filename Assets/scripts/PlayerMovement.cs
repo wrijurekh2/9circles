@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
     public float dashForce = 15f;
+    public Transform wallCheck;
+    private float wallCheckRadius = 0.1f;
+    private bool isTouchingWall;
 
     void Start()
     {
@@ -52,6 +54,17 @@ public class PlayerMovement : MonoBehaviour
             groundLayer
         );
 
+        isTouchingWall = Physics2D.OverlapCircle(
+            wallCheck.position,
+            wallCheckRadius,
+            groundLayer
+        );
+
+        if (isTouchingWall)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+
         // keep track of timer
         if (currDashCharges < maxDashCharges)
         {
@@ -75,28 +88,28 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if(playerInput.Player.Attack.WasPressedThisFrame())
+        /*if(playerInput.Player.Attack.WasPressedThisFrame())
         {
             animator.SetTrigger("Attack1");
-        }
+        }*/
 
         // Animations
 
         if (movement.x != 0)
         {
-            animator.SetBool("IsMoving", true);
-            animator.SetInteger("AnimState", 1);
-            GetComponent<SpriteRenderer>().flipX = movement.x < 0;
+            //animator.SetBool("IsMoving", true);
+            //animator.SetInteger("AnimState", 1);
+            GetComponent<SpriteRenderer>().flipX = movement.x > 0;
         }
-        else
+        /*else
         {
             animator.SetBool("IsMoving", false);
             animator.SetInteger("AnimState", 0);
-        }
+        }*/
 
-        animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
-        animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
-        animator.SetBool("Grounded", Grounded);
+        //animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
+        //animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
+        //animator.SetBool("Grounded", Grounded);
     }
 
     void FixedUpdate()

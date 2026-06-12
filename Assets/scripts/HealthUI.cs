@@ -8,7 +8,7 @@ public class HealthUI : MonoBehaviour
     private Animator heartAnimator;
     void Start()
     {
-
+        currentHealth = maxHealth;
         fillImage = GetComponentsInChildren<Image>()[1];
         heartAnimator = GetComponentInChildren<Animator>();
     }
