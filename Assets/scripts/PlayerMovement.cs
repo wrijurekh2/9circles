@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheck;
     private float wallCheckRadius = 0.1f;
     private bool isTouchingWall;
+    private float lastDirection = 1f;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Enable();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
     }
 
     IEnumerator Dash()
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movement.x = playerInput.Player.Move.ReadValue<Vector2>().x;
+        if (movement.x != 0) lastDirection = movement.x;
 
         // Check if grounded
         Grounded = Physics2D.OverlapCircle(
@@ -61,10 +64,7 @@ public class PlayerMovement : MonoBehaviour
             groundLayer
         );
 
-        if (isTouchingWall)
-        {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        }
+        
 
         // keep track of timer
         if (currDashCharges < maxDashCharges)
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Animations
 
-        if (movement.x != 0)
+        if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
         {
             animator.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = movement.x > 0;
@@ -104,7 +104,10 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("IsRunning", false);
+            GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
         }
+
+        
         
 
         //animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
@@ -116,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDashing)
         {
-            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+           rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
         }
     }
 }
