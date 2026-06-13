@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  jumpForce: 10
+  jumpForce: 20
   currDashCharges: 3
   maxDashCharges: 3
   dashCooldown: 1

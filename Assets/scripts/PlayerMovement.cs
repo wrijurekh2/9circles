@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     { 
-        rb.linearVelocity = new Vector2(dashForce * movement.x, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(dashForce * lastDirection, rb.linearVelocity.y);
         isDashing = true;
         animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerInput.Player.Jump.WasPressedThisFrame() && Grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetTrigger("Jump");
         }
 
         if (playerInput.Player.Dash.WasPressedThisFrame() && !isDashing 
@@ -99,22 +100,26 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack1");
         }*/
 
+        
+
         // Animations
 
         if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
         {
             animator.SetBool("IsRunning", true);
-            GetComponent<SpriteRenderer>().flipX = movement.x > 0;
+            if(!isDashing)
+                GetComponent<SpriteRenderer>().flipX = movement.x > 0;
         }
         else
         {
             animator.SetBool("IsRunning", false);
-            GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
+            if(!isDashing)
+                GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
         }
         
-        //animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
-        //animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
-        //animator.SetBool("Grounded", Grounded);
+        
+        animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
+        animator.SetBool("IsGrounded", Grounded);
     }
 
     void FixedUpdate()
