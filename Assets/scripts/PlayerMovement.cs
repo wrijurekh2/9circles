@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
-    public float dashForce = 15f;
+    public float dashForce = 10f;
     public Transform wallCheck;
     private float wallCheckRadius = 0.1f;
     private bool isTouchingWall;
@@ -40,10 +40,14 @@ public class PlayerMovement : MonoBehaviour
     { 
         rb.linearVelocity = new Vector2(dashForce * movement.x, rb.linearVelocity.y);
         isDashing = true;
-        yield return new WaitForSeconds(0.2f);
-        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
+
+        yield return new WaitForSeconds(0.5f);
+
+        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
         isDashing = false;
+        animator.SetBool("IsDashing", isDashing);
     }
 
     void Update()
@@ -87,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 && currDashCharges > 0)
         {   
             StartCoroutine(Dash());
+            animator.SetTrigger("Dash");
         }
 
         /*if(playerInput.Player.Attack.WasPressedThisFrame())
@@ -106,10 +111,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsRunning", false);
             GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
         }
-
         
-        
-
         //animator.SetBool("IsJumping", rb.linearVelocity.y > 0.1f);
         //animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
         //animator.SetBool("Grounded", Grounded);
