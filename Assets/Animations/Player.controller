@@ -114,7 +114,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CharaRun
-  m_Speed: 1.231
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8177812069035415140}

@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
 
 
         transform.position = new Vector3(
-            smoothedX,
+            targetX,
             transform.position.y,
             transform.position.z
         );
