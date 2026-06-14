@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Animations
 
-        if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        if (movement.x != 0)
         {
             animator.SetBool("IsRunning", true);
             if(!isDashing)
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
         }
         
-        
+        UnityEngine.Debug.Log("velocity: " + rb.linearVelocity.x + " lastDirection: " + lastDirection + " flipX: " + GetComponent<SpriteRenderer>().flipX);
         animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
         animator.SetBool("IsGrounded", Grounded);
     }
