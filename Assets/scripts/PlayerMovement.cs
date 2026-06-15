@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private float wallCheckRadius = 0.1f;
     private bool isTouchingWall;
     private float lastDirection = 1f;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
 
     void Start()
     {
@@ -33,22 +36,56 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Enable();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+       
         
     }
 
     IEnumerator Dash()
     { 
-        rb.linearVelocity = new Vector2(dashForce * lastDirection, rb.linearVelocity.y);
         isDashing = true;
         animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
+        Physics2D.IgnoreLayerCollision(
+            LayerMask.NameToLayer("Default"),
+            LayerMask.NameToLayer("Enemy"), 
+            true
+        );
+        if(!Grounded)
+        {
+            rb.gravityScale = 0;
+            rb.linearVelocity = new Vector2(dashForce * lastDirection, 0);
+        }
+        else if(Grounded)
+        {
+            rb.linearVelocity = new Vector2(dashForce * lastDirection, rb.linearVelocity.y);
+        }
 
         yield return new WaitForSeconds(0.5f);
 
         rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        rb.gravityScale = 2;
         isDashing = false;
         animator.SetBool("IsDashing", isDashing);
+        Physics2D.IgnoreLayerCollision(
+            LayerMask.NameToLayer("Default"),
+            LayerMask.NameToLayer("Enemy"), 
+            false
+        );
     }
+
+    void Attack()
+    {
+        animator.SetTrigger("Attack1");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,
+         attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyAI>().TakeDamage(20);
+        }
+    }
+    
 
     void Update()
     {
@@ -95,10 +132,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Dash");
         }
 
-        /*if(playerInput.Player.Attack.WasPressedThisFrame())
+        if(playerInput.Player.Attack.WasPressedThisFrame())
         {
-            animator.SetTrigger("Attack1");
-        }*/
+            Attack();
+        }
 
         
 
@@ -117,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
         }
         
-        UnityEngine.Debug.Log("velocity: " + rb.linearVelocity.x + " lastDirection: " + lastDirection + " flipX: " + GetComponent<SpriteRenderer>().flipX);
+        
         animator.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
         animator.SetBool("IsGrounded", Grounded);
     }
