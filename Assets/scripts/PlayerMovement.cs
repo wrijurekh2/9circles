@@ -97,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = playerInput.Player.Move.ReadValue<Vector2>().x;
         if (movement.x != 0) lastDirection = movement.x;
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, -49, 49),
+            transform.position.y,
+            transform.position.z
+        );
 
         // Check if grounded
         Grounded = Physics2D.OverlapCircle(
