@@ -26,6 +26,9 @@ public class DashUI : MonoBehaviour
     {
         float visualCharges = playerMovement.currDashCharges + 
             (playerMovement.timer / playerMovement.dashCooldown);
+
+        Debug.Log("playerMovement.currDashCharges: " + playerMovement.currDashCharges);
+
         for (int i = 0; i < fillBars.Count; i++)
         {
             float fill = visualCharges - i;

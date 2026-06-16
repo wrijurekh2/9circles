@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public float attackRate = 2f;
+    private float nextAttackTime = 0f;
 
 
     void Start()
@@ -42,14 +44,18 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     { 
+        Debug.Log("Dash started, charges before: " + currDashCharges);
         isDashing = true;
         animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
+        Debug.Log("Charges after decrease: " + currDashCharges);
         Physics2D.IgnoreLayerCollision(
             LayerMask.NameToLayer("Default"),
             LayerMask.NameToLayer("Enemy"), 
             true
         );
+        
+
         if(!Grounded)
         {
             rb.gravityScale = 0;
@@ -132,9 +138,13 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Dash");
         }
 
-        if(playerInput.Player.Attack.WasPressedThisFrame())
+        if (Time.time >= nextAttackTime)
         {
-            Attack();
+            if(playerInput.Player.Attack.WasPressedThisFrame())
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
 
         
@@ -144,14 +154,24 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x != 0)
         {
             animator.SetBool("IsRunning", true);
-            if(!isDashing)
-                GetComponent<SpriteRenderer>().flipX = movement.x > 0;
+            if (!isDashing)
+            {
+                if (movement.x > 0)
+                    transform.localScale = new Vector3(-1, 1, 1);
+                else
+                    transform.localScale = new Vector3(1, 1, 1);
+            }
         }
         else
         {
             animator.SetBool("IsRunning", false);
             if(!isDashing)
-                GetComponent<SpriteRenderer>().flipX = lastDirection > 0;
+            {
+                if (lastDirection > 0)
+                    transform.localScale = new Vector3(-1, 1, 1);
+                else
+                    transform.localScale = new Vector3(1, 1, 1);
+            }
         }
         
         

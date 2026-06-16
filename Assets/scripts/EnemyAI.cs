@@ -19,10 +19,14 @@ public class EnemyAI : MonoBehaviour
     public float maxPatrol = -217.18f;
     public float detectionRange = 10f;
     private Vector2 movement;
-    public float moveSpeed = 3f;
-    public float attackRange = 1f;
+    public float moveSpeed = 5f;
+    private float attackRange = 5f;
     public float maxHealth = 100f;
     private float currentHealth;
+    public float attackRate = 1f;
+    private float nextAttackTime = 0f;
+    public LayerMask playerLayer;
+    public Transform attackPoint;
 
     void Start()
     {
@@ -32,6 +36,21 @@ public class EnemyAI : MonoBehaviour
         currentMode = EnemyMode.Idle;
         movement.x = 1;
         currentHealth = maxHealth;
+        animator.SetBool("Grounded", true);
+        
+    }
+
+    void attack()
+    {
+        animator.SetTrigger("Attack1");
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, 
+            attackRange, playerLayer);
+
+        if (hitPlayer != null)
+        {
+            player.GetComponent<HealthUI>().TakeDamage(20);
+        }
         
     }
 
@@ -57,10 +76,14 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<SpriteRenderer>().flipX = movement.x < 0;
+        if (movement.x < 0)
+            transform.localScale = new Vector3(-2, 2, 1);
+        else
+            transform.localScale = new Vector3(2, 2, 1);
         if (currentMode == EnemyMode.Idle)
         {
             rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+            animator.SetInteger("AnimState", 1);
             if (movement.x > 0 && transform.position.x >= maxPatrol)
             {
                 movement.x = -1;
@@ -77,9 +100,12 @@ public class EnemyAI : MonoBehaviour
         { 
             movement.x = Mathf.Sign(player.position.x - transform.position.x);
             rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
-            if (Vector2.Distance(transform.position, player.position) <= attackRange)
-            {
-                animator.SetTrigger("Attack1");
+            if (Time.time >= nextAttackTime){
+                if (Vector2.Distance(transform.position, player.position) <= attackRange)
+                {
+                    attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
 
