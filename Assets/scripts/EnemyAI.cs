@@ -31,16 +31,16 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         player =  GameObject.FindWithTag("Player").transform;
         currentMode = EnemyMode.Idle;
-        movement.x = 1;
+        //movement.x = 1;
         currentHealth = maxHealth;
-        animator.SetBool("Grounded", true);
+        //animator.SetBool("Grounded", true);
         
     }
 
-    void attack()
+    /*void attack()
     {
         animator.SetTrigger("Attack1");
 
@@ -52,11 +52,11 @@ public class EnemyAI : MonoBehaviour
             player.GetComponent<HealthUI>().TakeDamage(20);
         }
         
-    }
+    }*/
 
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -66,8 +66,8 @@ public class EnemyAI : MonoBehaviour
     void Die()
     {
         rb.linearVelocity = new Vector2(0, 0);
-        animator.SetTrigger("Death");
-        animator.SetBool("noBlood", false);
+        //animator.SetTrigger("Death");
+        //animator.SetBool("noBlood", false);
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
@@ -76,56 +76,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (movement.x < 0)
-            transform.localScale = new Vector3(-2, 2, 1);
-        else
-            transform.localScale = new Vector3(2, 2, 1);
-        if (currentMode == EnemyMode.Idle)
-        {
-            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
-            animator.SetInteger("AnimState", 1);
-            if (movement.x > 0 && transform.position.x >= maxPatrol)
-            {
-                movement.x = -1;
-            }
-            else if (movement.x < 0 && transform.position.x <= minPatrol)
-            {
-                movement.x = 1;
-            }
-
-            
-        }
-
-        if (currentMode == EnemyMode.Combat)
-        { 
-            movement.x = Mathf.Sign(player.position.x - transform.position.x);
-            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
-            if (Time.time >= nextAttackTime){
-                if (Vector2.Distance(transform.position, player.position) <= attackRange)
-                {
-                    attack();
-                    nextAttackTime = Time.time + 1f / attackRate;
-                }
-            }
-        }
-
-        if (Vector2.Distance(transform.position, player.position) <= detectionRange)
-        {
-            currentMode = EnemyMode.Combat;
-        }
-
-        if (movement.x != 0)
-        {
-            
-        }
-
-        if (currentMode == EnemyMode.Death)
-        {
-            
-        }
-
-
+        Debug.Log(currentHealth);
         
-
     }
 }

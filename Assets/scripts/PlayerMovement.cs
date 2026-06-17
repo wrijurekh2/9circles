@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
+    private float comboTime;
 
 
     void Start()
@@ -79,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
-    void Attack()
+    void Attack1()
     {
         animator.SetTrigger("Attack1");
 
@@ -90,6 +91,21 @@ public class PlayerMovement : MonoBehaviour
         {
             enemy.GetComponent<EnemyAI>().TakeDamage(20);
         }
+        comboTime = Time.time + 1;
+    }
+
+    void Attack2()
+    {
+        animator.SetTrigger("Attack2");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,
+         attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyAI>().TakeDamage(40);
+        }
+        comboTime = Time.time - 1;
     }
     
 
@@ -147,10 +163,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if(playerInput.Player.Attack.WasPressedThisFrame())
             {
-                Attack();
+                Attack1();
                 nextAttackTime = Time.time + 1f / attackRate;
+            } 
+        }
+
+        else if (Time.time <= comboTime)
+        {
+            if(playerInput.Player.Attack.WasPressedThisFrame())
+            {
+                Attack2();
             }
         }
+        
 
         
 
