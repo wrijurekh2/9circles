@@ -1273,7 +1273,7 @@ MonoBehaviour:
   maxPatrol: -217.18
   detectionRange: 10
   moveSpeed: 5
-  maxHealth: 100
+  maxHealth: 1000
   attackRate: 1
   playerLayer:
     serializedVersion: 2
@@ -1586,6 +1586,11 @@ Transform:
   - {fileID: 824604074}
   m_Father: {fileID: 1599977525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &817025488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2423786262342123678, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
+  m_PrefabInstance: {fileID: 1570419618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824604073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1799,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6373702482570736491, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
   m_PrefabInstance: {fileID: 1570419618}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1983041726}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27fe2732db1afbe4982becb25f19b5c9, type: 3}
@@ -2323,7 +2328,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2578148414853047295, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983041731}
   m_SourcePrefab: {fileID: 100100000, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
 --- !u!1 &1599977524
 GameObject:
@@ -2974,6 +2982,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08641fa56422ce4faaa6ca54ab4c15a, type: 3}
+--- !u!1 &1983041726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2578148414853047295, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
+  m_PrefabInstance: {fileID: 1570419618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1983041731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983041726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efd3c0e3ef12754da637b6296bd6c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  canRecieveInput: 0
+  inputRecieved: 0
+  attackPoint: {fileID: 817025488}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,12 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallCheckRadius = 0.1f;
     private bool isTouchingWall;
     private float lastDirection = 1f;
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
-    public LayerMask enemyLayers;
-    public float attackRate = 2f;
-    private float nextAttackTime = 0f;
-    private float comboTime;
+    
+
 
 
     void Start()
@@ -78,34 +75,6 @@ public class PlayerMovement : MonoBehaviour
             LayerMask.NameToLayer("Enemy"), 
             false
         );
-    }
-
-    void Attack1()
-    {
-        animator.SetTrigger("Attack1");
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,
-         attackRange, enemyLayers);
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<EnemyAI>().TakeDamage(20);
-        }
-        comboTime = Time.time + 1;
-    }
-
-    void Attack2()
-    {
-        animator.SetTrigger("Attack2");
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,
-         attackRange, enemyLayers);
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<EnemyAI>().TakeDamage(40);
-        }
-        comboTime = Time.time - 1;
     }
     
 
@@ -159,22 +128,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Dash");
         }
 
-        if (Time.time >= nextAttackTime)
+        if (playerInput.Player.Attack.WasPressedThisFrame())
         {
-            if(playerInput.Player.Attack.WasPressedThisFrame())
-            {
-                Attack1();
-                nextAttackTime = Time.time + 1f / attackRate;
-            } 
+            CombatManager.instance.inputRecieved = true;
         }
-
-        else if (Time.time <= comboTime)
-        {
-            if(playerInput.Player.Attack.WasPressedThisFrame())
-            {
-                Attack2();
-            }
-        }
+        
         
 
         

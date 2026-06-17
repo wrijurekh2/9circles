@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     private Vector2 movement;
     public float moveSpeed = 5f;
     private float attackRange = 5f;
-    public float maxHealth = 100f;
+    public float maxHealth = 1000f;
     private float currentHealth;
     public float attackRate = 1f;
     private float nextAttackTime = 0f;
@@ -58,6 +58,7 @@ public class EnemyAI : MonoBehaviour
     {
         //animator.SetTrigger("Hurt");
         currentHealth -= damage;
+        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -76,7 +77,6 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentHealth);
         
     }
 }
