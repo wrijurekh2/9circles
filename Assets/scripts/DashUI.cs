@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
 
 public class DashUI : MonoBehaviour
@@ -17,7 +18,7 @@ public class DashUI : MonoBehaviour
             RectTransform rt = bar.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(80 * i, 0);
             Image[] images = bar.GetComponentsInChildren<Image>();
-            Image fill = bar.GetComponentsInChildren<Image>()[1];
+            Image fill = bar.GetComponentsInChildren<Image>()[1]; 
             fillBars.Add(fill);
         }
     }
