@@ -2044,7 +2044,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 493459262874445430, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.07
+      value: 12.21
       objectReference: {fileID: 0}
     - target: {fileID: 493459262874445430, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2082,9 +2082,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 756443547307329774, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2578148414853047295, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373702482570736491, guid: 3178a78b5ec7c134782074f58286bc95, type: 3}
+      propertyPath: dashCooldown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
