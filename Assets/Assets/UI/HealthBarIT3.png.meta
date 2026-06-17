@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 737ea274c0c8c1149ac5cdaa857c2f16
+guid: 53fd0184d2c9cec49b1632b732d77131
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StaminaBar_0
+      name: HealthBarIT3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 10
+        width: 240
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad2a09ab51637544db756169f25937db
-      internalID: 317446145
+      spriteID: 641766054bc905c46a2c9dc39356f2ff
+      internalID: -2113581187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StaminaBar_1
+      name: HealthBarIT3_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 240
         y: 0
-        width: 80
-        height: 10
+        width: 240
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42043bddd78f7bc419d86e6e460aec37
-      internalID: 769253584
+      spriteID: c4d5406496c0c484f9a473c6895d66b6
+      internalID: 1429908174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthBarIT3_2
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 240
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77a8785b4017b84ea6456b4ee49400f
+      internalID: -169788257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthBarIT3_3
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 240
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a024ebcd11c023a49abb1c157e622728
+      internalID: 1695441441
       vertices: []
       indices: 
       edges: []
@@ -144,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 611b42afb3d11dd438b2379b00047311
+    spriteID: d88a9d2eef10fde4396b3acb1920aad0
     internalID: 0
     vertices: []
     indices: 
@@ -154,12 +198,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":80.0,"y":10.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
-      - key: SpriteEditor.SliceOnImport
-        value: True
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":240.0,"y":15.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      StaminaBar_0: 317446145
-      StaminaBar_1: 769253584
+      HealthBarIT3_0: -2113581187
+      HealthBarIT3_1: 1429908174
+      HealthBarIT3_2: -169788257
+      HealthBarIT3_3: 1695441441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

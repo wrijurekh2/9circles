@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3c4cc30a17004844816392a24bde4fd
+guid: 1bb9ab55bcd691d4a86343c0bb1184ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HPBar_0
+      name: StaminaBarIT2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 240
-        height: 16
+        width: 80
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 639a942d78c69a04cab47ba5ec3be069
-      internalID: 1876844923
+      spriteID: 3178bfb188fa8b547826dcafb453c15a
+      internalID: -656815313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HPBar_1
+      name: StaminaBarIT2_1
       rect:
         serializedVersion: 2
-        x: 240
+        x: 80
         y: 0
-        width: 240
-        height: 16
+        width: 80
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76331e53ba27d194ca2feeb12501ff3a
-      internalID: 2027861534
+      spriteID: 8574aa201a383a041adb2a927cf31e29
+      internalID: 109551379
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 647355188dc919f4fa1c9e42d0f057fd
+    spriteID: e65d545180727fb47b5dc7fe6568499e
     internalID: 0
     vertices: []
     indices: 
@@ -154,10 +154,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":240.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":80.0,"y":10.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      HPBar_0: 1876844923
-      HPBar_1: 2027861534
+      StaminaBarIT2_0: -656815313
+      StaminaBarIT2_1: 109551379
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
