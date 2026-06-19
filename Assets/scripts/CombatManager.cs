@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-
+    public BoxCollider2D box;
     private void Awake()
     {
         instance = this;
@@ -19,12 +19,13 @@ public class CombatManager : MonoBehaviour
 
     void Start()
     {
+        box = attackPoint.GetComponentInChildren<BoxCollider2D>();
         
     }
 
     void Update()
     {
-        
+        box.enabled = false;
     }
 
     void Attack1(InputAction.CallbackContext context)
@@ -55,10 +56,13 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+
     public void Attack(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,
             attackRange, enemyLayers);
+        
+        //collider2D hitEnemies2 ;
 
         foreach(Collider2D enemy in hitEnemies)
         {
@@ -78,5 +82,17 @@ public class CombatManager : MonoBehaviour
         Time.timeScale = 1f;
         
     }
+
+    public void EnableHitbox()
+    {
+        box.enabled = true;
+    }
+
+    public void DisableHitbox()
+    {
+        box.enabled = false;
+    }
+
+    
 
 }

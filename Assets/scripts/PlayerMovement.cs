@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private InputSystem_Actions playerInput;
     private Rigidbody2D rb;
     private Animator animator;
-    private Vector2 movement;
+    private Vector2 moveInput;
     private bool Grounded;
     public int currDashCharges = 3;
     public int maxDashCharges = 3; 
@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     private float wallCheckRadius = 0.1f;
     private bool isTouchingWall;
     private float lastDirection = 1f;
+    float acceleration = 8f;
+    float deceleration = 12f;
+    float velPower = 0.9f;
     
 
 
@@ -36,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Enable();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-       
-        
     }
 
     IEnumerator Dash()
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         rb.gravityScale = 2;
         isDashing = false;
         animator.SetBool("IsDashing", isDashing);
@@ -80,8 +81,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement.x = playerInput.Player.Move.ReadValue<Vector2>().x;
-        if (movement.x != 0) lastDirection = movement.x;
+        moveInput.x = playerInput.Player.Move.ReadValue<Vector2>().x;
+        if (moveInput.x != 0) lastDirection = moveInput.x;
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, -49, 49),
             transform.position.y,
@@ -132,19 +133,15 @@ public class PlayerMovement : MonoBehaviour
         {
             CombatManager.instance.inputRecieved = true;
         }
-        
-        
-
-        
 
         // Animations
 
-        if (movement.x != 0)
+        if (moveInput.x != 0)
         {
             animator.SetBool("IsRunning", true);
             if (!isDashing)
             {
-                if (movement.x > 0)
+                if (moveInput.x > 0)
                     transform.localScale = new Vector3(-1, 1, 1);
                 else
                     transform.localScale = new Vector3(1, 1, 1);
@@ -169,9 +166,23 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isDashing)
+        
+        /*if (!isDashing)
         {
            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        }*/
+
+        #region run
+        if (!isDashing)
+        {
+           float targetSpeed = moveInput.x * moveSpeed;
+           float speedDif = targetSpeed - rb.linearVelocity.x;
+           float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+           float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+           rb.AddForce(movement * Vector2.right);
+            
         }
+        #endregion
+        
     }
 }
