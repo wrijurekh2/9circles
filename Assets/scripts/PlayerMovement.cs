@@ -1,6 +1,4 @@
 using System.Collections;
-
-using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,9 +25,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isTouchingWall;
     private float lastDirection = 1f;
     float acceleration = 8f;
-    float deceleration = 12f;
+    float deceleration = 8f;
     float velPower = 0.9f;
-    
+    float frictionAmount = 0.02f;
+    float lastGroundedTime;
+    float lastJumpTime;
+    bool isJumping;
+    private GrapplingHook grapplingHook;
 
 
 
@@ -39,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Enable();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        grapplingHook = GetComponent<GrapplingHook>();
     }
 
     IEnumerator Dash()
     { 
-        Debug.Log("Dash started, charges before: " + currDashCharges);
         isDashing = true;
         animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
@@ -77,6 +79,21 @@ public class PlayerMovement : MonoBehaviour
             false
         );
     }
+
+    void Jump()
+    {
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        isJumping = true;
+        lastGroundedTime = 0;
+        lastJumpTime = 0;
+        animator.SetTrigger("Jump"); 
+
+    }
+
+    public void OnJump()
+    {
+        lastJumpTime = 0.15f;
+    }
     
 
     void Update()
@@ -102,6 +119,11 @@ public class PlayerMovement : MonoBehaviour
             groundLayer
         );
 
+
+        #region timer
+        lastGroundedTime -= Time.deltaTime;
+        lastJumpTime -= Time.deltaTime;
+        #endregion
         
 
         // keep track of timer
@@ -118,8 +140,18 @@ public class PlayerMovement : MonoBehaviour
         // Jump
         if (playerInput.Player.Jump.WasPressedThisFrame() && Grounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            animator.SetTrigger("Jump");
+            Jump();
+        }
+
+        if(lastGroundedTime > 0 && lastJumpTime > 0 && !isJumping)
+        {
+            Jump();
+        }
+
+        if(Grounded)
+        {
+            lastGroundedTime = 0.15f;
+            isJumping = false;
         }
 
         if (playerInput.Player.Dash.WasPressedThisFrame() && !isDashing 
@@ -167,13 +199,9 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         
-        /*if (!isDashing)
-        {
-           rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
-        }*/
 
         #region run
-        if (!isDashing)
+        if (!isDashing && !grapplingHook.isGrappling)
         {
            float targetSpeed = moveInput.x * moveSpeed;
            float speedDif = targetSpeed - rb.linearVelocity.x;
@@ -184,5 +212,14 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
         
+        #region friction 
+
+        if (Grounded && Mathf.Abs(moveInput.x) < 0.01f && !grapplingHook.isGrappling)
+        {
+            float amount = Mathf.Min(Mathf.Abs(rb.linearVelocity.x), Mathf.Abs(frictionAmount));
+            amount *= Mathf.Sign(rb.linearVelocity.x);
+            rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+        #endregion
     }
 }
