@@ -170,7 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  lastDirection: 1
   jumpForce: 10
+  dashForce: 15
   currDashCharges: 3
   maxDashCharges: 3
   dashCooldown: 1
@@ -181,7 +183,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashForce: 15
+  Grounded: 0
   wallCheck: {fileID: 165578184546088814}
 --- !u!212 &756443547307329774
 SpriteRenderer:
@@ -356,7 +358,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.13424665
         inSlope: 0
         outSlope: 0
         tangentMode: 0
