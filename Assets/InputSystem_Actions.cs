@@ -591,6 +591,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""eece5fe3-a5f8-4cdf-9f76-9ec7c76483e7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""397ffea2-1eea-4b76-87d5-b58dcb975ef8"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",

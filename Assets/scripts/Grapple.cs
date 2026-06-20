@@ -5,19 +5,21 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private float grappleLength;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LineRenderer rope;
-    [SerializeField] private float pullForce = 20f;
+    [SerializeField] private float pullForce = 40f;
+    [SerializeField] private float throwSpeed = 40f;
     [SerializeField] private float arrivalThreshold = 3f;
+    [SerializeField] private GameObject portalEffect;
+
     private Rigidbody2D rb;
     private InputSystem_Actions playerInput;
     public bool isGrappling = false;
     private Vector3 grapplePoint;
     private bool isThrowing = false; 
     private Vector3 ropeEnd;
-    private float throwSpeed = 20f; 
     private bool missed = false;
     private PlayerMovement playerMovement;
     public bool recentlyGrappled = false;
-
+    private GameObject spawnedPortal;
     void Start()
     {
         rope.enabled = false;
@@ -55,6 +57,11 @@ public class GrapplingHook : MonoBehaviour
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, transform.position);
                 rope.enabled = true;
+                spawnedPortal = Instantiate(portalEffect, grapplePoint, Quaternion.identity);
+                float throwDistance = Vector3.Distance(transform.position, grapplePoint);
+                float travelTime = throwDistance / throwSpeed;
+                Animator portalAnimator = spawnedPortal.GetComponent<Animator>();
+                portalAnimator.speed = 1f / travelTime;
             }
             else
             {
@@ -125,8 +132,7 @@ public class GrapplingHook : MonoBehaviour
         if (distance < arrivalThreshold)
         {
             Detach();
-        }
-            
+        }   
         
     }
 
@@ -137,5 +143,9 @@ public class GrapplingHook : MonoBehaviour
         rope.enabled = false;
         rb.gravityScale = 2;
         recentlyGrappled = true;
+        if (spawnedPortal != null)
+        {
+            Destroy(spawnedPortal);
+        }
     }
 }

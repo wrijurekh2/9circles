@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2423786262342123678}
-  - component: {fileID: 328524014022340890}
+  - component: {fileID: 3674391779376627027}
   m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -32,18 +32,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 493459262874445430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &328524014022340890
-MonoBehaviour:
+--- !u!61 &3674391779376627027
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320541664666503953}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b9925a5ca03fd43a41160d32bfeee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.009419441, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.0188389, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2578148414853047295
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +92,8 @@ GameObject:
   - component: {fileID: 6373702482570736491}
   - component: {fileID: 756443547307329774}
   - component: {fileID: 5103377282608453891}
+  - component: {fileID: 3094451077923335203}
+  - component: {fileID: 970183960917063922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -175,7 +211,7 @@ MonoBehaviour:
   dashForce: 15
   currDashCharges: 3
   maxDashCharges: 3
-  dashCooldown: 1
+  dashCooldown: 2
   timer: 0
   isDashing: 0
   groundCheck: {fileID: 4198735338291746049}
@@ -211,7 +247,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -266,6 +302,48 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3094451077923335203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2578148414853047295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efd3c0e3ef12754da637b6296bd6c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  canRecieveInput: 0
+  inputRecieved: 0
+  attackPoint: {fileID: 2423786262342123678}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  box: {fileID: 0}
+--- !u!114 &970183960917063922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2578148414853047295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2827d0eedfd8214b883b972bb3e6cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrapplingHook
+  grappleLength: 10
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  rope: {fileID: 3351078402349115993}
+  pullForce: 20
+  arrivalThreshold: 3
+  portalEffect: {fileID: 8823710244924081987, guid: 1a3c6a32eb50c824e9e709a46f282e3b, type: 3}
+  isGrappling: 0
+  recentlyGrappled: 0
 --- !u!1 &3102204101660893839
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0) lastDirection = moveInput.x;
 
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, -49, 49),
+            Mathf.Clamp(transform.position.x, -49, 110),
             transform.position.y,
             transform.position.z
         );
