@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0) lastDirection = moveInput.x;
 
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, -49, 110),
+            Mathf.Clamp(transform.position.x, -49, 200),
             transform.position.y,
             transform.position.z
         );
@@ -97,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerInput.Player.Jump.WasPressedThisFrame() && postGrappleWindow > 0)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-            rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
+            Jump();
         }
 
         else if (playerInput.Player.Jump.WasPressedThisFrame() && Grounded)

@@ -45,9 +45,6 @@ public class GrapplingHook : MonoBehaviour
             grappleLength,
             grappleLayer);
 
-            //Debug.Log("Hit: " + hit.collider + " Distance: " + hit.distance);
-            //Debug.DrawRay(transform.position, aimDirection * grappleLength, Color.red, 2f);
-
             if(hit.collider !=null)
             {
                 grapplePoint = hit.point;
