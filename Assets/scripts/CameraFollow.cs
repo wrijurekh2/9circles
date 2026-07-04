@@ -7,47 +7,29 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset;
     public float minX = -94f;
     public float maxX = 120.2f;
-    private float blockSize = 11.25f;
     private float targetY;
     void Start()
     {
         transform.position = new Vector3(
             player.position.x + offset.x,
-            transform.position.y,
+            player.position.y + offset.y,
             transform.position.z
         );
-        targetY = transform.position.y;
     }
 
     void LateUpdate()
     {
         float targetX = player.position.x + offset.x;
+        float targetY = player.position.y + offset.y;
         targetX = Mathf.Clamp(targetX, minX, maxX);
+        //targetY = Mathf.Clamp(targetY, minY, maxY); use if needed later
 
         transform.position = new Vector3(
             targetX,
-            transform.position.y,
+            targetY,
             transform.position.z
         );
 
-        float cameraHalfHeight = Camera.main.orthographicSize;
-
-        if (player.position.y > targetY + cameraHalfHeight)
-        {
-            targetY += blockSize;
-        }
-
-        if(player.position.y < targetY - cameraHalfHeight)
-        {
-            targetY -= blockSize;
-        }
-
-        transform.position = new Vector3(
-            transform.position.x,
-            Mathf.Lerp(transform.position.y, targetY, Time.deltaTime * 5f),
-            transform.position.z
-        );
-
-        //Debug.Log(Camera.main.orthographicSize * 2);
+  
     }
 }

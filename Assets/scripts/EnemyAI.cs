@@ -3,80 +3,62 @@ using System.Dynamic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-enum EnemyMode
-    {
-        Idle,
-        Combat,
-        Death
-    }
+
 public class EnemyAI : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
-    private EnemyMode currentMode;
     private Transform player;
-    public float minPatrol = -240.34f;
-    public float maxPatrol = -217.18f;
     public float detectionRange = 10f;
     private Vector2 movement;
-    public float moveSpeed = 5f;
-    private float attackRange = 5f;
-    public float maxHealth = 1000f;
-    private float currentHealth;
-    public float attackRate = 1f;
-    private float nextAttackTime = 0f;
     public LayerMask playerLayer;
     public Transform attackPoint;
+    public bool aggro;
+    public float lungeSpeed = 5f;
+    public float minX = -13f;
+    public float maxX = 14f;
+    private BoxCollider2D box;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         player =  GameObject.FindWithTag("Player").transform;
-        currentMode = EnemyMode.Idle;
-        //movement.x = 1;
-        currentHealth = maxHealth;
-        //animator.SetBool("Grounded", true);
-        
+        box = GetComponentsInChildren<BoxCollider2D>()[1];
     }
 
-    /*void attack()
-    {
-        animator.SetTrigger("Attack1");
-
-        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, 
-            attackRange, playerLayer);
-
-        if (hitPlayer != null)
-        {
-            player.GetComponent<HealthUI>().TakeDamage(20);
-        }
-        
-    }*/
-
-    public void TakeDamage(int damage)
-    {
-        //animator.SetTrigger("Hurt");
-        currentHealth -= damage;
-        Debug.Log(currentHealth);
-
-        if (currentHealth <= 0)
-            Die();
-    }
-
-    void Die()
-    {
-        rb.linearVelocity = new Vector2(0, 0);
-        //animator.SetTrigger("Death");
-        //animator.SetBool("noBlood", false);
-
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        aggro = Vector2.Distance(player.position, transform.position) < detectionRange;
+
+        if (aggro)
+            animator.SetBool("Aggro", true);
+        else if (!aggro)
+            animator.SetBool("Aggro", false);
+    }
+
+    public void LungeForward()
+    {
+        rb.linearVelocity = new Vector2(-lungeSpeed * transform.localScale.x, rb.linearVelocity.y);
+    }
+
+    public void LungeBack()
+    {
+        rb.linearVelocity = new Vector2(lungeSpeed * transform.localScale.x, rb.linearVelocity.y);
+    }
+
+    public void StopLunge()
+    {
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+    }
+
+    public void EnableBox()
+    {
+        box.enabled = true;
+    }
+
+    public void DisableBox()
+    {
+        box.enabled = false;
     }
 }

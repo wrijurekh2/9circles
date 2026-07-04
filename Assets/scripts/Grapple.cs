@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class GrapplingHook : MonoBehaviour
 {
+    #region Variables 
     [SerializeField] private float grappleLength;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LineRenderer rope;
@@ -14,12 +17,18 @@ public class GrapplingHook : MonoBehaviour
     private InputSystem_Actions playerInput;
     public bool isGrappling = false;
     private Vector3 grapplePoint;
-    private bool isThrowing = false; 
+    private bool isThrowing = false;
     private Vector3 ropeEnd;
     private bool missed = false;
     private PlayerMovement playerMovement;
     public bool recentlyGrappled = false;
     private GameObject spawnedPortal;
+    private Vector2 mousePos;
+    private SpriteRenderer sr;
+    private Color color;
+    #endregion
+
+    #region Unity Callbacks
     void Start()
     {
         rope.enabled = false;
@@ -31,25 +40,35 @@ public class GrapplingHook : MonoBehaviour
 
     void Update()
     {
-        if(playerInput.Player.Grapple.WasPressedThisFrame() && !isThrowing && !isGrappling)
-        {
-            
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0;
-            
-            Vector2 aimDirection = (mouseWorldPos - transform.position).normalized;
-            
-            RaycastHit2D hit = Physics2D.Raycast(
-            transform.position, 
-            aimDirection, 
-            grappleLength,
-            grappleLayer);
+        AnchorPoint target = FindClosestAnchor();
+        mousePos = Mouse.current.position.ReadValue();
 
-            if(hit.collider !=null)
+        foreach (var anchor in FindObjectsByType<AnchorPoint>()) 
+        {
+            anchor.GetComponentInChildren<Light2D>().intensity = 0f;
+            sr = anchor.GetComponentInChildren<SpriteRenderer>();
+            color = sr.color;
+            color.a = 112.5f;
+        }
+
+        if (target != null ) 
+        {
+            target.GetComponentInChildren<Light2D>().intensity = 1f;
+            sr = target.GetComponentInChildren<SpriteRenderer>();
+            color = sr.color;
+            color.a = 255;
+
+        }
+
+        if (playerInput.Player.Grapple.WasPressedThisFrame() && !isThrowing && !isGrappling)
+        {
+
+            if (target != null)
             {
-                grapplePoint = hit.point;
-                grapplePoint.z =0;
+                grapplePoint = target.transform.position;
+                grapplePoint.z = 0;
                 ropeEnd = transform.position;
+                playerMovement.rb.linearVelocity = new Vector2(0, 0);
                 isThrowing = true;
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, transform.position);
@@ -60,27 +79,16 @@ public class GrapplingHook : MonoBehaviour
                 Animator portalAnimator = spawnedPortal.GetComponent<Animator>();
                 portalAnimator.speed = 1f / travelTime;
             }
-            else
-            {
-                grapplePoint = (Vector3)(Vector2)transform.position + (Vector3)aimDirection * grappleLength;
-                grapplePoint.z = 0;
-                ropeEnd = transform.position;
-                isThrowing = true;
-                missed = true; 
-                rope.SetPosition(0, transform.position);
-                rope.SetPosition(1, transform.position);
-                rope.enabled = true;
-            }
         }
 
-        if(isThrowing)
+        if (isThrowing)
         {
             ropeEnd = Vector3.MoveTowards(ropeEnd, grapplePoint, throwSpeed * Time.deltaTime);
             rope.SetPosition(0, ropeEnd);
 
-            if(Vector3.Distance(ropeEnd, grapplePoint) < 0.1f)
+            if (Vector3.Distance(ropeEnd, grapplePoint) < 0.1f)
             {
-                if(missed)
+                if (missed)
                 {
                     missed = false;
                     grapplePoint = transform.position;
@@ -93,23 +101,32 @@ public class GrapplingHook : MonoBehaviour
                 }
             }
         }
-        if(isGrappling)
+        if (isGrappling)
         {
             rope.SetPosition(0, grapplePoint);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"),
+                                           LayerMask.NameToLayer("Ground"),
+                                           true);
+            if (playerInput.Player.Grapple.WasPressedThisFrame())
+            {
+                Detach();
+            }
         }
 
-        if(rope.enabled)
+        if (!isGrappling)
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"),
+                                           LayerMask.NameToLayer("Ground"),
+                                           false);
+        }
+
+        if (rope.enabled)
         {
             rope.SetPosition(1, transform.position);
         }
 
-        /*if(playerInput.Player.Grapple.WasReleasedThisFrame())
-        {
-           Detach();
-        }*/
 
-
-        if(missed && Vector3.Distance(ropeEnd, transform.position) < 0.1f)
+        if (missed && Vector3.Distance(ropeEnd, transform.position) < 0.1f)
         {
             Detach();
         }
@@ -117,8 +134,8 @@ public class GrapplingHook : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!isGrappling) return;
-        
+        if (!isGrappling) return;
+
         Vector2 direction = (grapplePoint - transform.position).normalized;
         float distance = Vector2.Distance(transform.position, grapplePoint);
 
@@ -129,10 +146,12 @@ public class GrapplingHook : MonoBehaviour
         if (distance < arrivalThreshold)
         {
             Detach();
-        }   
-        
-    }
+        }
 
+    }
+    #endregion
+
+    #region Grapple Methods
     void Detach()
     {
         isGrappling = false;
@@ -145,4 +164,33 @@ public class GrapplingHook : MonoBehaviour
             Destroy(spawnedPortal);
         }
     }
+
+    
+    private AnchorPoint FindClosestAnchor()
+    {
+        AnchorPoint[] allAnchors = FindObjectsByType<AnchorPoint>();
+        AnchorPoint closest = null;
+        Vector2 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
+        float closestPoint = grappleLength;
+
+        foreach (AnchorPoint anchor in allAnchors)
+        {
+            float distance = Vector2.Distance(mousePosWorld, anchor.transform.position);
+            if (distance < closestPoint)
+            {
+                closestPoint = distance;
+                closest = anchor;
+            }
+        }
+
+        if (closest == null) return null;
+
+        if (Vector2.Distance(transform.position, closest.transform.position) <= grappleLength)
+        {
+            return closest;
+        }
+
+        return null;
+    }
+    #endregion
 }

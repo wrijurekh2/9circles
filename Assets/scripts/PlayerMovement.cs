@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     float frictionAmount = 0.02f;
     public float lastDirection = 1f;
     private Vector2 moveInput;
+    public float minX = -49;
+    public float maxX = 200;
 
     [Header("Jump")]
     public float jumpForce = 10f;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash")]
     public float dashForce = 10f;
+    public float dashTime = 0.25f;
     public int currDashCharges = 3;
     public int maxDashCharges = 3;
     public float dashCooldown = 5f;
@@ -42,8 +45,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Grapple")]
     float postGrappleWindow = 0f;
 
+
     // Components
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator animator;
     private InputSystem_Actions playerInput;
     private GrapplingHook grapplingHook;
@@ -57,7 +61,10 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         grapplingHook = GetComponent<GrapplingHook>();
+        Application.targetFrameRate = 60;
     }
+
+    
 
     void Update()
     {
@@ -65,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0) lastDirection = moveInput.x;
 
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, -49, 200),
+            Mathf.Clamp(transform.position.x, minX, maxX),
             transform.position.y,
             transform.position.z
         );
@@ -226,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(dashForce * lastDirection, rb.linearVelocity.y);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(dashTime);
 
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         rb.gravityScale = 2;

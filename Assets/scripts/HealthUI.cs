@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
-    public float currentHealth = 10f;
+    public float currentHealth;
     public float maxHealth = 100f;
     private Image fillImage;
     private Image bufferImage;
     private Image bufferImage2;
     private Animator heartAnimator;
+
+    
     void Start()
     {
         currentHealth = maxHealth;

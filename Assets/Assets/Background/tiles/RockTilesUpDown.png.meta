@@ -109,7 +109,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 16, y: -17}
       tessellationDetail: 0
       bones: []
       spriteID: 49514a7f51d52764fbcd2576b9e26842
@@ -131,7 +135,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 16, y: -17}
       tessellationDetail: 0
       bones: []
       spriteID: 0a3913b3d7cb1584b859fa67993be473
@@ -153,7 +161,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 16, y: -17}
+      - - {x: -5, y: -6}
+        - {x: -4, y: -6}
+        - {x: -4, y: 1}
+        - {x: -5, y: 1}
       tessellationDetail: 0
       bones: []
       spriteID: 42040d7d354482a4688bf13fb7dd13ce
@@ -175,7 +191,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: -17}
+        - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 10, y: -17}
       tessellationDetail: 0
       bones: []
       spriteID: c4b4df33c29b12c4d934fe02b313c30b
@@ -191,13 +212,18 @@ TextureImporter:
         x: 16
         y: 16
         width: 32
-        height: 35
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17.5}
+        - {x: -5, y: 17.5}
+        - {x: -16, y: 17.5}
+        - {x: -16, y: -17.5}
+        - {x: 16, y: -17.5}
       tessellationDetail: 0
       bones: []
       spriteID: 9dc15726cf4c21d44a2d1ca3da0b7817
@@ -219,7 +245,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 16, y: -17}
       tessellationDetail: 0
       bones: []
       spriteID: 6d3331e4653ca7141bf6e44aa1de68db
@@ -233,15 +263,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 13
+        y: 14
         width: 32
-        height: 35
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17.5}
+        - {x: -16, y: 17.5}
+        - {x: -16, y: -17.5}
+        - {x: -5, y: -17.5}
+        - {x: 16, y: -17.5}
       tessellationDetail: 0
       bones: []
       spriteID: 65f22603e9d88f148bf93cb5179a80cd
@@ -263,11 +298,37 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 16, y: 17}
+        - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 16, y: -17}
       tessellationDetail: 0
       bones: []
       spriteID: af77462ef73b4a54dbf191b616cf4878
       internalID: -1597355227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockTilesUpDown_8
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 14
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5509033, y: 0.3345108}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2027cba98987ff8499ef085eab696efa
+      internalID: -550883811
       vertices: []
       indices: 
       edges: []
@@ -296,6 +357,7 @@ TextureImporter:
       RockTilesUpDown_5: 1238677279
       RockTilesUpDown_6: 2086904425
       RockTilesUpDown_7: -1597355227
+      RockTilesUpDown_8: -550883811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
