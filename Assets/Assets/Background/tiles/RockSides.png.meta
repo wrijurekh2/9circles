@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0e63807dc0bcb14b9b2376f1704b9f1
+guid: c716bd62404b4f04cb4764b98d9fb29f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,238 +97,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RockTilesUpDown_0
+      name: RockSides_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 0
+        y: 0
         width: 32
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 16, y: -17}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49514a7f51d52764fbcd2576b9e26842
-      internalID: -270835615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 80
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 16, y: -17}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a3913b3d7cb1584b859fa67993be473
-      internalID: 2025983379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_2
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 78
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 16, y: -17}
-      - - {x: -5, y: -6}
-        - {x: -4, y: -6}
-        - {x: -4, y: 1}
-        - {x: -5, y: 1}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42040d7d354482a4688bf13fb7dd13ce
-      internalID: -1559512126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_3
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 78
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: -17}
-        - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 10, y: -17}
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4b4df33c29b12c4d934fe02b313c30b
-      internalID: 219870066
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17.5}
-        - {x: -5, y: 17.5}
-        - {x: -16, y: 17.5}
-        - {x: -16, y: -17.5}
-        - {x: 16, y: -17.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9dc15726cf4c21d44a2d1ca3da0b7817
-      internalID: 1812610592
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 16
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 16, y: -17}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d3331e4653ca7141bf6e44aa1de68db
-      internalID: 1238677279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_6
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 14
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17.5}
-        - {x: -16, y: 17.5}
-        - {x: -16, y: -17.5}
-        - {x: -5, y: -17.5}
-        - {x: 16, y: -17.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65f22603e9d88f148bf93cb5179a80cd
-      internalID: 2086904425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_7
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 14
-        width: 32
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 17}
-        - {x: -16, y: 17}
-        - {x: -16, y: -17}
-        - {x: 16, y: -17}
-      tessellationDetail: 0
-      bones: []
-      spriteID: af77462ef73b4a54dbf191b616cf4878
-      internalID: -1597355227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockTilesUpDown_8
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 14
-        width: 1
-        height: 1
-      alignment: 9
-      pivot: {x: 0.5509033, y: 0.3345108}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2027cba98987ff8499ef085eab696efa
-      internalID: -550883811
+      spriteID: 952a6f17a88e8c44ba794913bf7ee5b3
+      internalID: -1855704909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 260565d8d43cdd7478c0a054166ae2bd
+      internalID: 2015435453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6e87ed6bdef0664a97bc019e2ee68f1
+      internalID: 1108003892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89323e2b9cce900408473c30a3865cb3
+      internalID: 1869371939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b436e8e1f39afb84da382b57dae4c1bd
+      internalID: 266813012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70b37c3099d3d94e9fab9b5f918cb80
+      internalID: -1445033217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9849f8e65c5ec4d49815044382ec233c
+      internalID: -1482220147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockSides_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eb8ca2a829bc024b80f7260e58ab57a
+      internalID: -70593646
       vertices: []
       indices: 
       edges: []
@@ -337,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f1186ad2ae85a484c9594775d7704167
+    spriteID: ee8fc720ead7b8b489eed7de920314ee
     internalID: 0
     vertices: []
     indices: 
@@ -347,17 +286,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RockTilesUpDown_0: -270835615
-      RockTilesUpDown_1: 2025983379
-      RockTilesUpDown_2: -1559512126
-      RockTilesUpDown_3: 219870066
-      RockTilesUpDown_4: 1812610592
-      RockTilesUpDown_5: 1238677279
-      RockTilesUpDown_6: 2086904425
-      RockTilesUpDown_7: -1597355227
-      RockTilesUpDown_8: -550883811
+      RockSides_0: -1855704909
+      RockSides_1: 2015435453
+      RockSides_2: 1108003892
+      RockSides_3: 1869371939
+      RockSides_4: 266813012
+      RockSides_5: -1445033217
+      RockSides_6: -1482220147
+      RockSides_7: -70593646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
