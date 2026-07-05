@@ -1,6 +1,7 @@
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class HealthUI : MonoBehaviour
 {
     public float currentHealth;
@@ -9,6 +10,8 @@ public class HealthUI : MonoBehaviour
     private Image bufferImage;
     private Image bufferImage2;
     private Animator heartAnimator;
+    private bool canTakeDamage = true;
+    private float Itimer;
 
     
     void Start()
@@ -20,9 +23,35 @@ public class HealthUI : MonoBehaviour
         heartAnimator = GetComponentInChildren<Animator>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
+        if (!canTakeDamage) return;
         currentHealth -= damage;
+        StartCoroutine(Iframes(1f));
+    }
+
+    IEnumerator DamageOverTime(float damagePerTick, float tickInterval, float duration)
+    {
+        float elapsed = 0;
+
+        while (elapsed <= duration)
+        {
+            currentHealth -= damagePerTick;
+            elapsed += tickInterval;
+            yield return new WaitForSeconds(tickInterval);
+        }
+    }
+
+    public void TakeDotDamage(float damagePerTick, float tickInterval, float duration)
+    {
+        StartCoroutine(DamageOverTime(damagePerTick, tickInterval, duration));
+    }
+
+    IEnumerator Iframes(float IframeDuration)
+    {
+        canTakeDamage = false;
+        yield return new WaitForSecondsRealtime(IframeDuration);
+        canTakeDamage = true;
     }
 
     void Update()

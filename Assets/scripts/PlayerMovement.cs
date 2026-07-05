@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     public float minX = -49;
     public float maxX = 200;
+    private Queue<Vector2> positionHistory = new Queue<Vector2>();
+    private float recordInterval = 0.1f;
+    private float historyDuration = 0.5f;
+    private float timer2; 
 
     [Header("Jump")]
     public float jumpForce = 10f;
@@ -76,7 +81,22 @@ public class PlayerMovement : MonoBehaviour
             transform.position.y,
             transform.position.z
         );
-    
+
+        #region Returning to safe position
+        timer2 += Time.deltaTime;
+        if (timer2 >= recordInterval)
+        {
+            timer2 = 0f;
+            if(Grounded)
+                 positionHistory.Enqueue(transform.position);
+
+            while (positionHistory.Count > historyDuration / recordInterval)
+            {
+                positionHistory.Dequeue();
+            }
+        }
+        #endregion
+
 
         #region Grounded and Wall Check
         Grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -218,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsDashing", isDashing);
         currDashCharges -= 1;
         Physics2D.IgnoreLayerCollision(
-            LayerMask.NameToLayer("Default"),
+            LayerMask.NameToLayer("Player"),
             LayerMask.NameToLayer("Enemy"),
             true
         );
@@ -240,10 +260,19 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         animator.SetBool("IsDashing", isDashing);
         Physics2D.IgnoreLayerCollision(
-            LayerMask.NameToLayer("Default"),
+            LayerMask.NameToLayer("Player"),
             LayerMask.NameToLayer("Enemy"),
             false
         );
+    }
+
+    public void ReturnToSafePosition()
+    {
+        if (positionHistory.Count > 0)
+        {
+            rb.linearVelocity = new Vector2(0, 0);
+            transform.position = positionHistory.Peek();
+        }
     }
     #endregion
 }

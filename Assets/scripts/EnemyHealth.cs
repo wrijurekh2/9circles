@@ -23,7 +23,6 @@ public class EnemyHealth : MonoBehaviour
     {
         //animator.SetTrigger("Hurt");
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -33,8 +32,6 @@ public class EnemyHealth : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(0, 0);
         //animator.SetTrigger("Death");
-        //animator.SetBool("noBlood", false);
-
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }

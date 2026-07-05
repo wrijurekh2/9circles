@@ -20,7 +20,8 @@ public class SlimeDamage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D player)
     {
-        if (player.gameObject.layer != LayerMask.NameToLayer("Default")) return;
+        if (player.gameObject.layer != LayerMask.NameToLayer("Player")) return;
         healthUI.TakeDamage(40);
+        Debug.Log("one singular instance of 40 damage dealt");
     }
 }

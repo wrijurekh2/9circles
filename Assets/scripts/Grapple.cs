@@ -104,7 +104,7 @@ public class GrapplingHook : MonoBehaviour
         if (isGrappling)
         {
             rope.SetPosition(0, grapplePoint);
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"),
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),
                                            LayerMask.NameToLayer("Ground"),
                                            true);
             if (playerInput.Player.Grapple.WasPressedThisFrame())
@@ -115,7 +115,7 @@ public class GrapplingHook : MonoBehaviour
 
         if (!isGrappling)
         {
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"),
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),
                                            LayerMask.NameToLayer("Ground"),
                                            false);
         }
